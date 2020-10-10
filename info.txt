@@ -1,0 +1,25 @@
+Hello this is a quick init 
+Yooooo
+What the hell we're doing:
+-
+-title + login (menu bar?)
+-menu bar
+ --home | books | profile
+-
+-contact + web info 
+
+default font:
+default header size:
+
+
+
+
+To-Do week of Oct 11 :
+                Ash: 
+Try to get basic api call and figure out what data we geet from there
+- from there we can learn how to format in
+Elena:
+-try to design each of the required pages using bulma; dark theme, designed to look simple/easy to use
+
+Makky:
+- work on navigation and create alternate design and create alternate design
