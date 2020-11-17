@@ -1,0 +1,29 @@
+{
+  "name": "comp426-final-project",
+  "version": "1.0.0",
+  "description": "Final project fro theis dang class.",
+  "main": "javascript.js",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "browser-sync": "^2.26.13",
+    "bulma": "^0.9.1",
+    "data-store": "^4.0.3",
+    "expres": "0.0.5",
+    "express": "^4.17.1",
+    "font-awesome": "^4.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ashdos12/COMP426-Final-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ashdos12/COMP426-Final-Project/issues"
+  },
+  "homepage": "https://github.com/Ashdos12/COMP426-Final-Project#readme"
+}
