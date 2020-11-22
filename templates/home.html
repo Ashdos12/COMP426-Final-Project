@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+    <head>
+
+       {% block title %}Homepage{% endblock %}
+        <link rel="stylesheet" href="page.css">
+        <script src="templates/render.js" type="module"></script>
+        <script src="login/node_modules/axios/dist/axios.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+
+    </head>
+{% block content %}
+    <body>
+      
+      <div id="root">
+      {% if user.is_authenticated %}
+        <div class="topnav">
+          <a class='active' href="{% url 'home' %}"id="index">badreads</a>
+          <a href="{% url 'logout' %}">logout</a>
+          <a href="{% url 'signup' %}">signup</a>
+          <a href="{% url 'profile' %}"id="profile">profile</a>
+        </div>
+      {% else %}
+      <div class="topnav">
+        <a class='active' href="{% url 'home' %}"id="index">badreads</a>
+        <a  href="{% url 'login' %}">login</a>
+        <a href="{% url 'signup' %}">signup</a>
+        <a href="{% url 'profile' %}"id="profile">profile</a>
+      </div>
+      {% endif %}
+      
+    <div id="replace">
+    <h1 id="title">badreads</h1>
+    <div>
+        <div class="searchBar">
+            <div class="container">
+                <input type="text" id="search" class="search" name="search">
+                <button class="btn">search</button>
+            </div>
+        </div>
+  </div>
+  <div class="addTo">
+</div>
+<div id="newStuff"></div>
+  </div>
+  </div>
+
+    </body>
+{% endblock %}
+</html> 

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+
+    <head>
+
+        <title>signup - badreads</title>
+        <link rel="stylesheet" href="page.css">
+
+    </head>
+{% block content %}
+    <body>
+      <div class="topnav">
+       <a href="{% url 'home' %}"id="index">badreads</a>
+        <a  href="{% url 'login' %}">login</a>
+        <a  class='active' href="{% url 'signup' %}">signup</a>
+        <a href="{% url 'profile' %}"id="profile">profile</a>
+      </div>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
+    <!-- The form -->
+    
+    <h1 id="signup">signup</h1>
+    <div class="idk">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Sign Up</button>
+            </form>
+    </div>
+    </body>
+{% endblock %}
+</html> 

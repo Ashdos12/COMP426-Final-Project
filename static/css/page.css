@@ -1,0 +1,277 @@
+body{
+    background-color: rgb(30, 27, 36);
+}
+.topnav #index {
+  border-radius: 0px 0px 0px 50px
+}
+.topnav #profile {
+  border-radius: 0px 50px 0px 0px
+}
+.topnav {
+  margin-left:20px;
+}
+.topnav a {
+    margin-top:0px;
+    float: left;
+    display: block;
+    color: lightgray;
+    text-align: center;
+    text-decoration: none;
+    background-color: rgb(130, 27, 189);
+    padding: 30px;
+    font-size:20px;
+    font-family: 'Hammersmith One', sans-serif;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: rgb(30, 27, 36);
+  }
+  
+  /* Style the "active" element to highlight the current page */
+  .topnav a.active {
+    background-color: rgb(168, 116, 199);
+    color:white;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .searchBar {
+    margin-left: 400px;
+  }
+  .search {
+    padding:30px;
+    margin-right:0px;
+    border:0px;
+    border-radius: 0px 50px 0px 50px;
+    width:500px;
+  }
+  .btn {
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 25px;
+    color:white;
+    margin-left:20px;
+    background-color:rgb(130, 27, 189);
+    padding: 20px;
+    border: none;
+    border-radius:30px 30px 30px 30px;
+  }
+  a { 
+    font-family: 'Hammersmith One', sans-serif;
+    color: rgb(168, 116, 199);
+    font-size: 20px;
+  }
+  .idk {
+    background-color:lightgray;
+    padding:100px;
+    border-radius: 0px 50px 0px 50px;
+    max-width:800px;
+    max-height:500px;
+    margin-left: 400px;
+  }
+  .edit {
+    background-color:lightgray;
+    padding-top:5px;
+    padding-left: 20px;
+    padding-bottom:250px;
+    border-radius: 0px 50px 0px 50px;
+    max-width:575px;
+    max-height:200px;
+    margin-left: 400px;
+    margin-top: 20px;
+  }
+  #title {
+    padding-top:200px;
+    font-family: 'Hammersmith One', sans-serif;
+    color: white;
+    font-size: 60px;
+    margin-left: 400px;
+  }
+  #login {
+    padding-top:150px;
+    font-family: 'Hammersmith One', sans-serif;
+    color: white;
+    font-size: 60px;
+    margin-left: 400px;
+  }
+  #signup {
+    padding-top:150px;
+    font-family: 'Hammersmith One', sans-serif;
+    color: white;
+    font-size: 60px;
+    margin-left: 400px;
+  }
+  h1 {
+    padding-top:150px;
+    font-family: 'Hammersmith One', sans-serif;
+    color: white;
+    font-size: 60px;
+    margin-left: 400px;
+  }
+  label {
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 30px;
+    color: rgb(30, 27, 36);
+  }
+  h2 {
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 30px;
+    color: rgb(30, 27, 36);
+  }
+  .bookStats {
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 22px;
+    color: rgb(66, 65, 68);
+  }
+  #logsub {
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 25px;
+    color:white;
+    background-color:rgb(130, 27, 189);
+    padding: 10px;
+    border:0px;
+    border-radius:0px 10px 0px 10px;
+  }
+  #signsub {
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 25px;
+    color:white;
+    background-color:rgb(130, 27, 189);
+    padding: 10px;
+    border:0px;
+    border-radius:0px 10px 0px 10px;
+  }
+  #logsub button:hover {
+    background-color: rgb(168, 116, 199);
+    color:white;
+  }
+  #signsub button:hover {
+    background-color: rgb(168, 116, 199);
+    color:white;
+  }
+  .review {
+
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 25px;
+    color:white;
+    background-color:rgb(130, 27, 189);
+    padding: 10px;
+    border:0px;
+    border-radius:0px 10px 0px 10px;
+  }
+  .ed {
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 25px;
+    color:white;
+    background-color:rgb(130, 27, 189);
+    padding: 10px;
+    border:0px;
+    border-radius:0px 10px 0px 10px;
+  }
+  .delete {
+    margin-left: 10px;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 25px;
+    color:white;
+    background-color:rgb(130, 27, 189);
+    padding: 10px;
+    border:0px;
+    border-radius:0px 10px 0px 10px;
+  }
+  .post {
+    margin-left:450px;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 25px;
+    color:white;
+    background-color:rgb(130, 27, 189);
+    padding: 10px;
+    border:0px;
+    border-radius:0px 10px 0px 10px;
+  }
+  .update {
+    margin-left:400px;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 25px;
+    color:white;
+    background-color:rgb(130, 27, 189);
+    padding: 10px;
+    border:0px;
+    border-radius:0px 10px 0px 10px;
+  }
+  .posted {
+    background-color:lightgray;
+    padding-top:5px;
+    padding-left: 20px;
+    padding-bottom:10px;
+    border-radius: 0px 50px 0px 50px;
+    max-width:575px;
+    margin-left: 400px;
+    margin-top: 20px;
+  }
+  .book {
+    padding: 10px;
+    margin-left: 350px;
+    margin-top: 50px;
+    background-color:lightgray;
+    max-width: 750px;
+  }
+  .bookTitle {
+    background-color:lightgray;
+    border: none;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 32px;
+    color:rgb(30, 27, 36);
+  }
+  .bookTitle:hover {
+    color:rgb(168, 116, 199);
+  }
+  .stats {
+    background-color:lightgray;
+    border: none;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 12px;
+  }
+  .sects {
+    color:rgb(30, 27, 36);
+    border: none;
+    font-family: 'Hammersmith One', sans-serif;
+    font-size: 16px;
+  }
+  .row {
+    display: flex;
+  }
+  .right {
+    margin-left: 10px;
+    padding:0px;
+  }
+  .image {
+    background-color:white;
+    width: 100px;
+    height:150px;
+  }
+  .bigImage {
+    background-color:white;
+    width: 200px;
+    height:300px;
+  }
+  .bookPage {
+    background-color: lightgray;
+    border-radius: 0px 50px 0px 50px;
+    max-width:800px;
+    padding: 20px;
+    margin-left: 400px;
+  }
+  p {
+    font-family: 'Hammersmith One', sans-serif;
+    font-size:16px;
+    color:rgb(76, 76, 77);
+    font-style: italic;
+  }
+  .bold
+  {
+    font-family: 'Hammersmith One', sans-serif;
+    font-size:20px;
+    color:rgb(25, 25, 27);
+    font-style: italic;
+  }
