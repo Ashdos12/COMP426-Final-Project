@@ -132,6 +132,7 @@ export async function searchByString(string) {
 
 export async function setupAutocomplete(search) {
     search.addEventListener("keydown", function(e) {
+        $('#search').empty();
         const result = await axios({
             method: 'get',
             url: 'https://www.googleapis.com/books/v1/volumes?q='+search.value,
