@@ -21,7 +21,7 @@
       {% if user.is_authenticated %}
         <div class="topnav">
           <a class='active' href="{% url 'home' %}"id="index">badreads</a>
-          <a href="{% url 'logout' %}">logout</a>
+          <a href="{% url 'logout' %}" id="author_name" value="{{user.get_username}}">logout</a>
           <a href="{% url 'signup' %}">signup</a>
           <a href="{% url 'profile' %}"id="profile">profile</a>
         </div>

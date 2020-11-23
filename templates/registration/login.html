@@ -13,7 +13,7 @@
         <div class="topnav">
         
           <a href="{% url 'home' %}"id="index">badreads</a>
-          <a class='active'  href="{% url 'logout' %}">logout</a>
+          <a class='active'  href="{% url 'logout' %}" id="author_name" value="{{user.get_username}}">logout</a>
           <a href="{% url 'signup' %}">signup</a>
           <a href="{% url 'profile' %}"id="profile">profile</a>
          <h1>  Hi {{ user.username }}! You are already logged in! </h1>

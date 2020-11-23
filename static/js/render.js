@@ -1,7 +1,9 @@
 google.books.load();
 let baseUrl = window.location.href;
 baseUrl = "search/";
-console.log(baseUrl);
+axios.defaults.xsrfCookieName = 'csrftoken';
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+var user = document.getElementById("author_name").value;
 export const renderBook = function(author, desc, image, isbn, title) {
     return '<div class="book row"><div class="column"><img src="' +
         image + '" alt="book image" width="100" height="150"></div><div class="column right"><button class="bookTitle">' +
@@ -10,9 +12,8 @@ export const renderBook = function(author, desc, image, isbn, title) {
         author + '</p><p class="sects">Summary: </p><p class="description stats">' +
         desc + '</p></div></div>';
 }
-export const renderReview = function(id, text) {
-    console.log(id);
-    return '<div id=' + id + ' class="posted"><div><h2>Anonymous</h2><p id=' + id + 'text>' + text + '</p><br><button class="ed">edit</edit><button class="delete">delete</button></div><br><br><br></div>';
+export const renderReview = function(id, text, author) {
+    return '<div id=' + id + ' class="posted"><div><h2>' + author + '</h2><p id=' + id + 'text>' + text + '</p><br><button class="ed">edit</edit><button class="delete">delete</button></div><br><br><br></div>';
 }
 export const renderEditReview = function(isbn) {
     return '<div id=' + isbn + ' class="edit"><h2>Write your review</h2><textarea class="yourText" rows="5"cols="50"></textarea><br><button class="post">post</button></div>';
@@ -55,9 +56,9 @@ export async function getCommentsByISBN(isbn) {
         console.log(response);
         response = response.data.data;
         console.log(response);
-        for (var i = 0; i < response.lenght; i++) {
+        for (var i = 0; i < response.length; i++) {
             if (response[i].attributes.isbn == isbn) {
-                $('#replace').append(renderReview(response[i].attributes.id, response[i].attributes.body));
+                $('#replace').append(renderReview(response[i].id, response[i].attributes.body, response[i].attributes.author));
             }
         }
         // response.data.forEach(element => {
@@ -67,33 +68,35 @@ export async function getCommentsByISBN(isbn) {
     return result;
 }
 export async function postReview(isbn, text) {
-    console.log(baseUrl);
-    const result = await axios({
-        method: 'post',
-        url: baseUrl + 'comment',
-        data: {
-            author: "Anonymous",
-            body: text,
-            isbn: isbn,
-        }
-    }).then(response => $(".edit").replaceWith(renderReview(response.data.id, text, isbn)));
+
+    console.log(user);
+    console.log("User " + user + ", text" + text + " isbn, " + isbn);
+    const result = await axios.post('comment/', {
+        author: user,
+        body: text,
+        isbn: isbn,
+    }).then(response => {
+        console.log(response.data);
+        $(".edit").replaceWith(renderReview(response.data.id, text, response.data.author));
+    }).catch(error => {
+        console.log(error.response);
+    });
     return result.data;
 }
 export async function updateReview(id, text) {
-    const result = await axios({
-        method: 'put',
-        url: baseUrl + 'comment/' + id,
-        data: {
-            body: text,
-        }
-    }).then(response => $(".edit").replaceWith(renderReview(id, text)));
+    console.log(text + "User: " + user);
+    const result = await axios.patch('comment/' + id + "/", {
+        body: text,
+    }).then(response => {
+        console.log(response);
+        $(".edit").replaceWith(renderReview(id, text, user));
+    }).catch(error => {
+        console.log(error.response);
+    });
 }
 export async function deleteReview(id) {
-    let url = baseUrl + 'comment/' + id;
-    const result = await axios({
-        method: 'delete',
-        url: url,
-    });
+    let url = 'comment/' + id;
+    const result = await axios.delete(url, {});
 }
 export const handleDeleteButton = function(event) {
     let id = event.target.parentElement.parentElement.id;
@@ -109,7 +112,7 @@ export const handleEditButton = function(event) {
 export const handleUpdateButton = function(event) {
     let text = $(".yourText")[0].value;
     let id = event.target.parentElement.id;
-    console.log(id);
+    // console.log(" Need to see" + event.target.parentElement.data);
     updateReview(id, text);
 }
 export const handleSearchButton = function(event) {
@@ -132,6 +135,29 @@ export async function searchByString(string) {
         });
     });
     return result.data;
+};
+// Theres a big prblem here in order for this to work with django the function exactly before the axios call has to be async and it's not!
+export async function setupAutocomplete(search) {
+    search.addEventListener("keydown", function(e) {
+        $('#search').empty();
+        const result = await axios({
+            method: 'get',
+            url: 'https://www.googleapis.com/books/v1/volumes?q=' + search.value,
+        }).then(response => {
+            response.data.items.forEach(element => {
+                let author = element.volumeInfo.authors;
+                let desc = element.volumeInfo.description;
+                let image = element.volumeInfo.imageLinks.smallThumbnail;
+                let isbn = element.volumeInfo.industryIdentifiers[0].identifier;
+                let title = element.volumeInfo.title;
+                suggestion = renderAutoComplete(title, author, image)
+                suggestion.addEventListener("click", function(e) {
+                    $('.addTo').append(renderBook(author, desc, image, isbn, title));
+                });
+                $('#search').append(suggestion);
+            });
+        });
+    });
 }
 export async function Interactions() {
     let root = $('#root');
@@ -142,6 +168,7 @@ export async function Interactions() {
     $(root).on("click", ".ed", handleEditButton);
     $(root).on("click", ".delete", handleDeleteButton);
     $(root).on("click", ".update", handleUpdateButton);
+    setupAutocomplete($("#search"));
 }
 $(function() {
     Interactions();
