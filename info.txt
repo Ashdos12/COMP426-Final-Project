@@ -1,0 +1,4 @@
+Ok so so far I ned to realize how to get the backend serevr running so I can add and make comments and append them to the user objects, as well as learn to make get requests to the user object. For now I'm proably going to eat- and then figure out the user probem by building a user object that will have the comments marked wit the user id in them from the comments server or maybe somethign else. We just gotta figure that out and we're done!
+
+
+Really not my thing- yes I know I'm a heathen.

@@ -16,16 +16,29 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
-from .views import SignUpView
 from django.conf import settings
+from rest_framework import routers
+from .views import SignUpView
 from django.conf.urls.static import static
+from comment import views
+from django.conf.urls import url
+
+
+
+router = routers.DefaultRouter()
+router.register(r'comment', views.CommentViewSet)
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')), 
     path('', TemplateView.as_view(template_name='home.html'), name='home'), 
     path('accounts/signup/', SignUpView.as_view(template_name='registration/signup.html'), name='signup'),
     path('profile/', TemplateView.as_view(template_name='profile.html'), name='profile'), 
     path('accounts/login/', TemplateView.as_view(template_name='registration/login.html'), name='login'),
-]
+    path('', include(router.urls)),
+    # url(r"^search/", include(("commment.urls", "comment"), namespace = "search"))
+    path('search/', views.CommentsListView.as_view()),
+
+]   
 

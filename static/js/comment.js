@@ -1,4 +1,4 @@
-const comment_data = require('data-store')({ path: process.cwd() + '/data/comment.json' });
+const comment_data = require('data-store')({ path: process.cwd() + 'static/js/data/comment.json' });
 class comment {
     constructor(id, author, body, isbn) {
         this.isbn = isbn;

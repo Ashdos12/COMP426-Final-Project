@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="page.css">
 
     </head>
-
+{% block content %}
     <body>
     
       {% if user.is_authenticated %}
@@ -27,11 +27,15 @@
       {% endif %}
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link href="https://fonts.googleapis.com/css2?family=Hammersmith+One&display=swap" rel="stylesheet">
-      <h1>hello username!</h1>
+      {% if user.is_authenticated %}
+        <h1> Hi {{ user.username }}! </h1>
+        {% else %}
+       <h1> Please login/ sign up to see your reveiwed books! </h1> 
+      {% endif %}
       <div class="idk">
               <h2>your reviewed books:</h2>
       </div>
 
     </body>
-
+{% endblock %}
 </html> 

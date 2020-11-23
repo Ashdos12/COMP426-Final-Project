@@ -1,0 +1,18 @@
+[{
+    "model": "comment.comment",
+    "fields": {
+        "isbn": "9781781106464",
+        "id": 0,
+        "author": "Anonymous",
+        "body": "cool cool--edited"
+    }
+}, {
+    "model": "comment.comment",
+    "fields": {
+        "isbn": "9780141962306",
+        "id": 1,
+        "author": "Anonymous",
+        "body": "Love this series!--edited"
+    }
+
+}]
