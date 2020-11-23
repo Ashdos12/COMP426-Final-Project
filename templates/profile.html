@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
 
+<!DOCTYPE html>
+{% load static %}
+{% block content %}
     <head>
 
         <title>profile - badreads</title>
-        <link rel="stylesheet" href="page.css">
-
+        <script src="{% static 'js/profile.js' %}" type="module"></script>
     </head>
-{% block content %}
+
     <body>
     
       {% if user.is_authenticated %}
@@ -35,7 +36,7 @@
       <div class="idk">
               <h2>your reviewed books:</h2>
       </div>
-
+    <div class="append"></div>
     </body>
 {% endblock %}
 </html> 

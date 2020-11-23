@@ -4,6 +4,11 @@ baseUrl = "search/";
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 var user = document.getElementById("author_name").value;
+var $search = $('#search');
+
+
+
+
 export const renderBook = function(author, desc, image, isbn, title) {
     return '<div class="book row"><div class="column"><img src="' +
         image + '" alt="book image" width="100" height="150"></div><div class="column right"><button class="bookTitle">' +
@@ -13,14 +18,27 @@ export const renderBook = function(author, desc, image, isbn, title) {
         desc + '</p></div></div>';
 }
 export const renderReview = function(id, text, author) {
-    return '<div id=' + id + ' class="posted"><div><h2>' + author + '</h2><p id=' + id + 'text>' + text + '</p><br><button class="ed">edit</edit><button class="delete">delete</button></div><br><br><br></div>';
+    if (author == user) {
+        return '<div id=' + id + ' class="posted"><div><h2>' + author + '</h2><p id=' + id + 'text>' + text + '</p><br><button class="ed">edit</edit><button class="delete">delete</button></div><br><br><br></div>';
+    } else {
+        return '<div id=' + id + ' class="posted"><div><h2>' + author + '</h2><p id=' + id + 'text>' + text + '</p><br></div><br><br><br></div>';
+    }
 }
+
 export const renderEditReview = function(isbn) {
     return '<div id=' + isbn + ' class="edit"><h2>Write your review</h2><textarea class="yourText" rows="5"cols="50"></textarea><br><button class="post">post</button></div>';
 }
 export const renderUpdateReview = function(id, text) {
     return '<div id=' + id + ' class="edit"><h2>Update your review</h2><textarea class="yourText" rows="5"cols="50">' + text + '</textarea><br><button class="update">update</button></div>';
 }
+export const renderAutoComplete = function(title, author, image, isbn, desc) {
+    return '<div class="book row"><div class="column"><img src="' +
+        image + '" alt="book image" width="100" height="150"></div><div class="column right"><button class="bookTitle">' +
+        title + '</button><p class="sects">ISBN-10: </p><p class="isbn stats">' +
+        isbn + '</p><p class="sects">Author(s): </p><p class="author stats">' +
+        author + '</p><p class="sects">Summary: </p><p class="description stats">' +
+        desc + '</p></div></div>';
+};
 export const renderBookPage = function(title, author, isbn, desc, image) {
     return '<div id="replace"><h1>' + title + '</h1><div id="bookPage"><div class="bookPage row"><div class="column"><img src="' +
         image + '" alt="book image" width="200" height="300"></div><div class="column right"><h2>Author(s): <h2 class="bookStats">' +
@@ -77,7 +95,7 @@ export async function postReview(isbn, text) {
         isbn: isbn,
     }).then(response => {
         console.log(response.data);
-        $(".edit").replaceWith(renderReview(response.data.id, text, response.data.author));
+        $(".edit").replaceWith(renderReview(response.data.id, text, user));
     }).catch(error => {
         console.log(error.response);
     });
@@ -96,10 +114,13 @@ export async function updateReview(id, text) {
 }
 export async function deleteReview(id) {
     let url = 'comment/' + id;
-    const result = await axios.delete(url, {});
+    const result = await axios.delete(url, {}).catch(error => {
+        console.log(error.response);
+    });
 }
 export const handleDeleteButton = function(event) {
     let id = event.target.parentElement.parentElement.id;
+    console.log(event.target.parentElement.id);
     deleteReview(id);
     $('#' + id).remove();
 }
@@ -133,13 +154,18 @@ export async function searchByString(string) {
             let title = element.volumeInfo.title;
             $('.addTo').append(renderBook(author, desc, image, isbn, title));
         });
+    }).catch(error => {
+        console.log(error.response);
     });
     return result.data;
 };
 // Theres a big prblem here in order for this to work with django the function exactly before the axios call has to be async and it's not!
-export async function setupAutocomplete(search) {
-    search.addEventListener("keydown", function(e) {
-        $('#search').empty();
+export const setupAutocomplete = function(search) {
+
+    search = document.getElementById("search");
+    console.log(document.getElementById("search").value);
+    search.addEventListener("keyup", async function(e) {
+        $('.addTo').empty();
         const result = await axios({
             method: 'get',
             url: 'https://www.googleapis.com/books/v1/volumes?q=' + search.value,
@@ -150,14 +176,17 @@ export async function setupAutocomplete(search) {
                 let image = element.volumeInfo.imageLinks.smallThumbnail;
                 let isbn = element.volumeInfo.industryIdentifiers[0].identifier;
                 let title = element.volumeInfo.title;
-                suggestion = renderAutoComplete(title, author, image)
-                suggestion.addEventListener("click", function(e) {
-                    $('.addTo').append(renderBook(author, desc, image, isbn, title));
-                });
-                $('#search').append(suggestion);
+                $('.addTo').append(renderAutoComplete(title, author, image, isbn, desc));
+                // suggestion.addEventListener("click", async function(e) {
+                //     $('.addTo').append(renderBook(author, desc, image, isbn, title));
+                // });
+                // $(search).append(renderAutoComplete(title, author, image));
             });
+        }).catch(error => {
+            console.log(error.response);
         });
     });
+
 }
 export async function Interactions() {
     let root = $('#root');
@@ -168,7 +197,8 @@ export async function Interactions() {
     $(root).on("click", ".ed", handleEditButton);
     $(root).on("click", ".delete", handleDeleteButton);
     $(root).on("click", ".update", handleUpdateButton);
-    setupAutocomplete($("#search"));
+    $(root).on("keydown", "#search", setupAutocomplete);
+
 }
 $(function() {
     Interactions();
