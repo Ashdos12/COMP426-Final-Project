@@ -18,7 +18,7 @@ app.get('/comment', (req, res) => {
     return;
 });
 app.get('/data', (req, res) => {
-    res.sendFile('/data/comment.json', { root: __dirname});
+    res.sendFile('/data/comment.json', { root: __dirname });
 });
 
 app.get('/comment/:id', (req, res) => {
@@ -28,7 +28,7 @@ app.get('/comment/:id', (req, res) => {
         return;
     }
     res.json(b);
-} );
+});
 
 app.get('/comment/isbn/:isbn', (req, res) => {
     let b = comment.findByISBN(req.params.isbn);
@@ -37,13 +37,13 @@ app.get('/comment/isbn/:isbn', (req, res) => {
         return;
     }
     res.json(b);
-} );
+});
 
-app.post('/comment', (req, res)=> {
+app.post('/comment', (req, res) => {
     let body = req.body.body;
     let author = req.body.author;
     let isbn = req.body.isbn;
-    let c = comment.create(author, body, isbn);   
+    let c = comment.create(author, body, isbn);
     return res.json(c);
     /*
     let {isbn, id, author, rating} = req.body;
@@ -64,7 +64,7 @@ app.put('/comment/:id', (req, res) => {
         return;
     }
 
-    let {body} = req.body;
+    let { body } = req.body;
     c.body = body;
     c.update();
 
@@ -82,4 +82,6 @@ app.delete('/comment/:id', (req, res) => {
 })
 
 const port = 3030;
-app.listen(port, "0.0.0.0");
+app.listen(process.env.PORT || 3000, function() {
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
