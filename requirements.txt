@@ -4,3 +4,4 @@ gunicorn==20.0.4
 pytz==2020.4
 sqlparse==0.4.1
 django-heroku
+python==2.7
