@@ -6,7 +6,7 @@ from django.shortcuts import render
 from .filters import CommentFilter
 from django.http import JsonResponse
 from django.db.models import Q # new
-from braces.views import CsrfExemptMixin
+ 
 # def search(request):
 #     comment_list = Comment.objects.all()
 #     comment_filter = CommentFilter(request.GET, queryset = comment_list)
