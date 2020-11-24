@@ -11,6 +11,7 @@ gunicorn = "*"
 django-heroku = "*"
 djangorestframework = "*"
 django-filter = "*"
+djangorestframework-jsonapi = "*"
 
 [requires]
 python_version = "3.7"
