@@ -1,11 +1,8 @@
-asgiref==3.3.1
-Django==3.1.3
-django-braces==1.14.0
-django-filter==2.4.0
-djangorestframework==3.12.2
-djangorestframework-jsonapi==4.0.0
-gunicorn==20.0.4
-inflection==0.5.1
-pytz==2020.4
+appdirs==1.4.4
+certifi==2020.6.20
+distlib==0.3.1
+filelock==3.0.12
+pipenv @ file:///private/tmp/pipenv-20201008-15510-1exexmz/pipenv-2020.8.13
 six==1.15.0
-sqlparse==0.4.1
+virtualenv @ file:///private/tmp/pipenv--virtualenv-20201008-15510-tzwdt8/virtualenv-20.0.30
+virtualenv-clone==0.5.4
