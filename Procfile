@@ -1,3 +1,3 @@
-web: gunicorn login.wsgi:application --log-file - 
+web: gunicorn login.wsgi --log-file - 
 web: python manage.py runserver $PORT
 
