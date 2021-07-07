@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+    <head>
+        <title>Sign Up - Badreads</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    </head>
+
+    <body>
+        <div class = "signupHeader">
+            <h1>Badreads</h1>
+        </div>
+        <!--superuser is bubblesort ^2 username: bubblesort pass: bubblesort!-->
+       
+        <div class = "signupDynamic">
+        {% block content %}
+        <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+        </form>
+        {% endblock %}
+        </div>
+
+        
+        <div class= "signupFooter">
+            <p>Don't contact us</p>
+        </div>
+    </body>
+
+</html>
